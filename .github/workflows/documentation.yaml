@@ -27,7 +27,7 @@ jobs:
 
     - name: Build Sphinx 
       run: |
-        sphinx-build -W -b html . _build
+        sphinx-build -W -b html /docs _build
 
     - name: Upload de documentação
       if: always()
