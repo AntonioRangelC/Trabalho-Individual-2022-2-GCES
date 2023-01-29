@@ -25,13 +25,18 @@ jobs:
       run: |
         pip install sphinx==5.3.0
 
-    - name: Build Sphinx 
-      run: |
-        sphinx-build -W -b html /docs _build
+    # - name: Build Sphinx 
+    #   run: |
+    #     sphinx-build -W -b html /docs _build
 
-    - name: Upload de documentação
-      if: always()
-      uses: actions/upload-artifact@v1
-      with:
-        name: documentation
-        path: _build
+    - name: Run sphinx
+      working-directory: ./docs
+      run: |
+        make html
+    # - name: Upload de documentação
+    #   if: always()
+    #   uses: actions/upload-artifact@v1
+    #   with:
+    #     name: documentation
+    #     path: _build
+
