@@ -7,10 +7,12 @@ jobs:
   runs-on: ubuntu-latest
   steps:
   - name: Instalando Poetry
-      run: python -m pip install poetry
+      run: |
+      python -m pip install poetry
 
   - name: Instalando dependencias
-    run: poetry install
+    run: |
+      poetry install
 
   - name: Verificando lint
     run: |
@@ -19,13 +21,16 @@ jobs:
     continue-on-error: true
 
   - name: Realizando testes
-    run: poetry run pytest --cov 
+    run: |
+      poetry run pytest --cov 
 
   - name: Incrementando versão na lib
-    run: poetry version patch
+    run: |
+      poetry version patch
 
   - name: Build package
-    run: poetry build -v
+    run: |
+      poetry build -v
 
   - name: Publicação no PyPI
     run: |
