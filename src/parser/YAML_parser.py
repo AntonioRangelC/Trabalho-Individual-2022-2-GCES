@@ -3,7 +3,6 @@ import yaml
 from parser.parser_base import ParserBase
 
 
-
 class YAMLParser(ParserBase):
 
     def parse(self):

@@ -1,0 +1,13 @@
+name: Documentation
+
+on: [push]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Generate Sphinx documentation
+      run: |
+      sphinx-apidoc -f -o . src/
+      cd docs
+      make html
