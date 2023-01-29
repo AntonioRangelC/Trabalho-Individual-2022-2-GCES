@@ -24,6 +24,7 @@ jobs:
     - name: Instalando dependências
       run: |
         pip install sphinx==5.3.0
+        pip install sphinx_autodoc_typehints==1.21.8
 
     # - name: Build Sphinx 
     #   run: |
