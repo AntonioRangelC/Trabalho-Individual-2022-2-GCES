@@ -1,0 +1,41 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.PAT }}
+      
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+      
+    - name: Instalar requirements
+      run: pip install -r requirements.txt
+    
+    - name: Instalando poetry
+      run: pip install poetry
+
+    - name: Configurando token PyPi
+      run: poetry config pypi-token.pypi ${{ secrets.PYPI }}
+      env:
+        PYPI: ${{ secrets.PYPI }}
+      
+    - name: Publicando no PyPi
+      run: poetry publish --build
+
+    - name: confugurando git
+      run: |
+        git config user.name "GitHub Actions - Poetry publish PyPi"
+        git config user.email "<>"
